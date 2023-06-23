@@ -1,7 +1,7 @@
 {
-  "name": "yt-assignment1",
+  "name": "anjali",
   "version": "1.0.0",
-  "description": "",
+  "description": "learning express",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
