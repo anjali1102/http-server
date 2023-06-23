@@ -1,25 +1,27 @@
 const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser");
-const router = require("./UserRouter");
+var bodyParser = require("body-parser");
 
 const app = express();
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/api/v1", router);
 
-app.get("/", (req, res) => {
-  console.log(path.join("file", __dirname + "/index.html"));
-  res.sendFile(path.join(__dirname + "/index.html"));
+function sum(n) {
+  let resSum = 0;
+  for (let i = 0; i < n; i++) {
+    resSum += i;
+  }
+  return resSum;
+}
+
+app.post("/", (req, res) => {
+  //   let tillCount = req.query.counter; //query params to send data
+  let tillCount = req.body.counter;
+  //   console.log(req.headers, req.headers.counter);
+  console.log(req.body, req.body.counter); //body is not part of express, we use body-parser library
+  const result = sum(tillCount);
+  // res.send(`result ${result}`)
+  res.send(`${result}`);
 });
 
-// app.get("/test", (req, res) => {
-//   res.send(`
-//   <html><h2 style="color: pink;background: yellow;">testing :></h2></html>
-//   `);
-// });
-
 app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+  console.log("server started");
 });
